@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Function to multiply integer matrices
+// integer matrices
 void multiplyIntegerMatrices(const vector<vector<int>>& matrix1, const vector<vector<int>>& matrix2, vector<vector<int>>& result, int dimension) {
     for (int i = 0; i < dimension; i++) {
         for (int j = 0; j < dimension; j++) {
@@ -17,7 +17,7 @@ void multiplyIntegerMatrices(const vector<vector<int>>& matrix1, const vector<ve
     }
 }
 
-// Function to multiply double matrices
+// double matrices
 void multiplyFloatingPointMatrices(const vector<vector<double>>& matrix1, const vector<vector<double>>& matrix2, vector<vector<double>>& result, int dimension) {
     for (int i = 0; i < dimension; i++) {
         for (int j = 0; j < dimension; j++) {
@@ -29,7 +29,7 @@ void multiplyFloatingPointMatrices(const vector<vector<double>>& matrix1, const 
     }
 }
 
-// Function to calculate and print time duration
+// print time duration
 void displayTime(const struct timespec& startTime, const struct timespec& endTime, const string& message) {
     double elapsedTime = (endTime.tv_sec - startTime.tv_sec) * 1e9;
     elapsedTime = (elapsedTime + (endTime.tv_nsec - startTime.tv_nsec)) * 1e-9;
@@ -42,7 +42,7 @@ int main() {
     for (int dim : dimensions) {
         struct timespec systemStartTime, systemEndTime, cpuStartTime, cpuEndTime;
 
-        // Measure total system and CPU times
+        // system and CPU times
         clock_gettime(CLOCK_MONOTONIC, &systemStartTime);
         clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &cpuStartTime);
 
@@ -50,11 +50,11 @@ int main() {
         vector<vector<int>> matrixInt2(dim, vector<int>(dim, 1));
         vector<vector<int>> matrixIntResult(dim, vector<int>(dim, 0));
 
-        // Measure matrix multiplication time
+        // matrix multiplication time
         struct timespec multiplyStartTime, multiplyEndTime;
         clock_gettime(CLOCK_MONOTONIC, &multiplyStartTime);
 
-        // Perform integer matrix multiplication
+        // integer matrix multiplication
         multiplyIntegerMatrices(matrixInt1, matrixInt2, matrixIntResult, dim);
 
         clock_gettime(CLOCK_MONOTONIC, &multiplyEndTime);
@@ -76,7 +76,7 @@ int main() {
 
         clock_gettime(CLOCK_MONOTONIC, &multiplyStartTime);
 
-        // Perform floating-point matrix multiplication
+        // floating-point matrix multiplication
         multiplyFloatingPointMatrices(matrixFloat1, matrixFloat2, matrixFloatResult, dim);
 
         clock_gettime(CLOCK_MONOTONIC, &multiplyEndTime);
